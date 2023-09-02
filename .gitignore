@@ -1,8 +1,9 @@
 # Ignore everything
 *
-
 # Except for the .vimrc file
 !.vimrc
 
 # And the contents of the .vim directory
+#!.vim/
+!.vim
 !.vim/**
