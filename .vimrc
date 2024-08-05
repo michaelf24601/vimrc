@@ -14,16 +14,23 @@ set ignorecase " ignore case when searching
 set encoding=utf-8 " set encoding
 
 " PLUGIN MANAGER
+" Automatically install Vim-Plug in ~/.vim/autoload if not already
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 " Plugin Management using Vim-Plug
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Gruvbox Color Scheme
 Plug 'morhetz/gruvbox'
 set background=dark "set dark mode for gruvbox
-
-"You complete me
-Plug 'ycm-core/YouCompleteMe'
-set completeopt-=preview " don't show the preview split window
 
 " End plugin configuration
 call plug#end()
