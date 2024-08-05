@@ -12,6 +12,8 @@ set nowrap " no line wrapping
 set incsearch " incrementally highlight when searching
 set ignorecase " ignore case when searching
 set encoding=utf-8 " set encoding
+set colorcolumn=72
+
 
 " PLUGIN MANAGER
 " Automatically install Vim-Plug in ~/.vim/autoload if not already
